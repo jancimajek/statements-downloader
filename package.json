@@ -1,0 +1,37 @@
+{
+  "name": "statements-downloader",
+  "version": "1.0.0",
+  "description": "Automatically download regular statements",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint src tests",
+    "test": "nightwatch",
+    "vault": "npm run vault:start && echo 'Unseal by running `npm run vault:unseal` or in browser: http://localhost:8200/'",
+    "vault:start": "vault server -config ./vault/config.hcl >> vault.log 2>&1 &",
+    "vault:unseal": "echo 'You can also unseal in browser: http://localhost:8200/' && vault operator unseal",
+    "vault:stop": "cat vault.pid | xargs kill",
+    "vault:generate:token": "vault token create -no-default-policy -policy=unwrap-only -ttl=10s -use-limit=1 -format=json > /tmp/.vault-token.json",
+    "vault:generate:wrapToken": "vault kv get -wrap-ttl=10s -format=json secret/janci/statement-downloader > /tmp/.unwrap-token.json",
+    "vault:login": "vault login -field=policies",
+    "vault:logout": "rm ~/.vault-token",
+    "cleanup": "rm /tmp/.vault-token.json && rm /tmp/.unwrap-token.json",
+    "start": "npm run vault:login && npm run vault:generate:token && npm run vault:generate:wrapToken && npm run vault:logout && nightwatch && npm run cleanup && npm run chrome:zombies:kill",
+    "chrome:zombies": "ps auxw|grep '/statements-downloader/node_modules/chromedriver' | grep -v grep || echo 'No zombie chromedrive processes found'",
+    "chrome:zombies:kill": "npm run chrome:zombies && ps auxw|grep '/statements-downloader/node_modules/chromedriver' | grep -v grep | awk '{print $2}' | xargs kill && npm run chrome:zombies"
+  },
+  "author": "Jan Majek",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-plugin-mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "chromedriver": "^2.41.0",
+    "debug": "^3.1.0",
+    "dotenv": "^6.0.0",
+    "moment": "^2.22.2",
+    "nightwatch": "^1.0.8",
+    "node-vault": "^0.9.0",
+    "selenium-server": "^3.14.0"
+  }
+}
