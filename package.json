@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint src tests",
     "test": "nightwatch",
-    "vault": "npm run vault:start && echo \"Unseal by running `npm run vault:unseal` or in browser: $VAULT_ADDR\"",
+    "vault": "npm run vault:config && npm run vault:start && echo \"Vault server started. Unseal by running 'npm run vault:unseal', 'vault operator unseal' or in browser: $VAULT_ADDR\"",
     "vault:config": ". .env && eval \"echo \\\"$(sed 's/\"/\\\\\"/g' ./vault/config.template.hcl)\\\"\" > ./vault/config.hcl",
     "vault:start": "vault server -config ./vault/config.hcl >> vault.log 2>&1 &",
     "vault:unseal": "echo \"You can also unseal in browser: $VAULT_ADDR\" && vault operator unseal",
