@@ -1,5 +1,5 @@
 const moment = require('moment');
-const watchDownload = require('../src/download-watcher');
+const watchDownload = require('../download-watcher');
 
 describe('Download statements for', () => {
 
