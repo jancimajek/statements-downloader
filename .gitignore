@@ -19,3 +19,4 @@ result.json
 .history/
 janci.js
 *.pid
+vault/config.hcl

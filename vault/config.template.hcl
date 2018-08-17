@@ -1,5 +1,5 @@
 storage "file" {
-  path = "/Users/jan.majek/Sites/vault/data"
+  path = "${VAULT_DATA_DIR}"
 }
 
 listener "tcp" {
