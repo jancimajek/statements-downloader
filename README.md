@@ -17,6 +17,7 @@ Create a `.env` file:
 ```bash
 DEBUG="statements-downloader:*,secret-env,download-watcher"
 VAULT_DATA_DIR="/path/to/your/vault/data"
+VAULT_SECRET_PATH="secret/path/within/vault/to/the/secret/json"
 VAULT_TOKEN_FILE="/tmp/.vault-token.json"
 UNWRAP_TOKEN_FILE="/tmp/.unwrap-token.json"
 DOWNLOAD_DIR="/path/to/your/chrome/download/folder/"

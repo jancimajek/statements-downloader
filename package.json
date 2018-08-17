@@ -13,7 +13,7 @@
     "vault:seal": "vault operator seal",
     "vault:stop": "cat vault.pid | xargs kill",
     "vault:generate:token": "vault token create -no-default-policy -policy=unwrap-only -ttl=10s -use-limit=1 -format=json > $VAULT_TOKEN_FILE",
-    "vault:generate:wrap-token": "vault kv get -wrap-ttl=10s -format=json secret/janci/statement-downloader > $UNWRAP_TOKEN_FILE",
+    "vault:generate:wrap-token": "vault kv get -wrap-ttl=10s -format=json $VAULT_SECRET_PATH > $UNWRAP_TOKEN_FILE",
     "vault:login": "vault login -field=policies",
     "vault:logout": "rm ~/.vault-token",
     "cleanup": ". .env && rm -v $VAULT_TOKEN_FILE $UNWRAP_TOKEN_FILE",
