@@ -10,6 +10,7 @@
     "vault:config": ". .env && eval \"echo \\\"$(sed 's/\"/\\\\\"/g' ./vault/config.template.hcl)\\\"\" > ./vault/config.hcl",
     "vault:start": "vault server -config ./vault/config.hcl >> vault.log 2>&1 &",
     "vault:unseal": "echo \"You can also unseal in browser: $VAULT_ADDR\" && vault operator unseal",
+    "vault:seal": "vault operator seal",
     "vault:stop": "cat vault.pid | xargs kill",
     "vault:generate:token": "vault token create -no-default-policy -policy=unwrap-only -ttl=10s -use-limit=1 -format=json > $VAULT_TOKEN_FILE",
     "vault:generate:wrapToken": "vault kv get -wrap-ttl=10s -format=json secret/janci/statement-downloader > $UNWRAP_TOKEN_FILE",
