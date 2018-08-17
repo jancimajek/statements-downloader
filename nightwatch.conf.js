@@ -12,7 +12,7 @@ debug('Selenium server:', seleniumServer.path);
 debug('Chrome driver:', chromedriver.path);
 
 module.exports = {
-  src_folders: 'tests',
+  src_folders: 'src/statements',
   output_folder: 'reports',
   test_runner: {
     type: 'mocha',
