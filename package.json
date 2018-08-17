@@ -13,11 +13,11 @@
     "vault:seal": "vault operator seal",
     "vault:stop": "cat vault.pid | xargs kill",
     "vault:generate:token": "vault token create -no-default-policy -policy=unwrap-only -ttl=10s -use-limit=1 -format=json > $VAULT_TOKEN_FILE",
-    "vault:generate:wrapToken": "vault kv get -wrap-ttl=10s -format=json secret/janci/statement-downloader > $UNWRAP_TOKEN_FILE",
+    "vault:generate:wrap-token": "vault kv get -wrap-ttl=10s -format=json secret/janci/statement-downloader > $UNWRAP_TOKEN_FILE",
     "vault:login": "vault login -field=policies",
     "vault:logout": "rm ~/.vault-token",
     "cleanup": ". .env && rm -v $VAULT_TOKEN_FILE $UNWRAP_TOKEN_FILE",
-    "start": "npm run vault:login && npm run vault:generate:token && npm run vault:generate:wrapToken && npm run vault:logout && nightwatch && npm run cleanup && npm run chrome:zombies:kill",
+    "start": "npm run vault:login && npm run vault:generate:token && npm run vault:generate:wrap-token && npm run vault:logout && nightwatch && npm run cleanup && npm run chrome:zombies:kill",
     "chrome:zombies": "npm run chrome:zombies:find --silent || echo 'No zombie chromedrive processes found'",
     "chrome:zombies:find": "ps auxw|grep '/statements-downloader/node_modules/chromedriver' | grep -v grep",
     "chrome:zombies:kill": "npm run chrome:zombies && npm run chrome:zombies:find --silent | awk '{print $2}' | xargs kill && npm run chrome:zombies"
