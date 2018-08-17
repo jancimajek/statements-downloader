@@ -86,6 +86,27 @@ $ npm start
 
 You will be prompted to enter the broker token.
 
+### Troubleshooting
+
+#### Problem:
+The script crashes with the following error:
+```bash
+   connect ECONNREFUSED 127.0.0.1:4444
+
+   socket hang up
+       at createHangUpError (_http_client.js:331:15)
+       at Socket.socketCloseListener (_http_client.js:363:23)
+```
+
+#### Solution:
+This is a weird error when selenium sometimes doesn't start properly. Simply re-running the script should fix the problem (it may need to be re-run a few times until it works).
+
+#### Problem:
+The browser hangs loading a page.
+
+#### Solution:
+Sometimes you can manually reload the page in the test Chrome but usually nightwatch will have crashed by then. In that case, you'll need to re-run the script.
+
 ## Stop Vault
 Once done downlowading the statements, stop Vault:
 
