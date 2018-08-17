@@ -17,8 +17,9 @@
     "vault:logout": "rm ~/.vault-token",
     "cleanup": "rm /tmp/.vault-token.json && rm /tmp/.unwrap-token.json",
     "start": "npm run vault:login && npm run vault:generate:token && npm run vault:generate:wrapToken && npm run vault:logout && nightwatch && npm run cleanup && npm run chrome:zombies:kill",
-    "chrome:zombies": "ps auxw|grep '/statements-downloader/node_modules/chromedriver' | grep -v grep || echo 'No zombie chromedrive processes found'",
-    "chrome:zombies:kill": "npm run chrome:zombies && ps auxw|grep '/statements-downloader/node_modules/chromedriver' | grep -v grep | awk '{print $2}' | xargs kill && npm run chrome:zombies"
+    "chrome:zombies": "npm run chrome:zombies:find --silent || echo 'No zombie chromedrive processes found'",
+    "chrome:zombies:find": "ps auxw|grep '/statements-downloader/node_modules/chromedriver' | grep -v grep",
+    "chrome:zombies:kill": "npm run chrome:zombies && npm run chrome:zombies:find --silent | awk '{print $2}' | xargs kill && npm run chrome:zombies"
   },
   "author": "Jan Majek",
   "license": "ISC",
