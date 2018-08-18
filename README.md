@@ -24,6 +24,7 @@ VAULT_TOKEN_FILE="/tmp/.vault-token.json"
 UNWRAP_TOKEN_FILE="/tmp/.unwrap-token.json"
 DOWNLOAD_DIR="/path/to/your/chrome/download/folder/"
 TARGET_DIR="/path/to/your/target/folder/"
+WAIT_DELAY=30000
 ```
 
 Export `VAULT_ADDR` environment variable (best place this into the `~/.bashrc` file):
