@@ -1,6 +1,8 @@
 # Statement downloader
 
-## Install
+_Tool to securely automate regular downloads of various utility and bank statements_
+
+## 📲 Install
 
 First install [Hashicorp Vault](https://www.vaultproject.io/), then clone and install the app:
 
@@ -10,7 +12,7 @@ $ cd statements-downloader
 $ npm install
 ```
 
-## Configure
+## 🛠 Configure
 
 Create a `.env` file:
 
@@ -30,7 +32,7 @@ Export `VAULT_ADDR` environment variable (best place this into the `~/.bashrc` f
 $ export VAULT_ADDR='http://127.0.0.1:8200'
 ```
 
-## Vault
+## 🔐 Vault
 
 ### Start Vault
 ```bash
@@ -95,7 +97,7 @@ The `downloadRegex` should match the statement file format for given `statement_
 
 - Vault logs into `vault.log`
     
-## Download statements
+## 📥 Download statements
 
 ```bash
 $ npm start
@@ -103,8 +105,8 @@ $ npm start
 
 You will be prompted to enter the broker token.
 
-### Download only one or some statements
-Use environmental variable `MOCHA_GREP` to limit which statements should be downloaded. The value should be a `RegExp` pattern matching `describe` or `it` label. 
+### Filter statements to download
+Use environmental variable `MOCHA_GREP` to filter which statements should be downloaded. The value should be a `RegExp` pattern matching `describe` or `it` label. 
 
 ```bash
 $ MOCHA_GREP=Sky npm start
@@ -135,7 +137,7 @@ The browser hangs loading a page.
 #### Solution:
 Sometimes you can manually reload the page in the test Chrome but usually nightwatch will have crashed by then. In that case, you'll need to re-run the script.
 
-## Stop Vault
+## 🔒 Stop Vault
 Once done downloading the statements, stop Vault:
 
 ```bash
