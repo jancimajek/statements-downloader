@@ -68,7 +68,7 @@ The downloader expects the secret JSON to be in the following format:
     "downloadRegex": "^statement_regex_.*\\.pdf$",
     "targetDir": "path/to/target/folder/relative/to/TARGET_DIR/"
   },
-  // ...
+  ...
 }
 ```
 
