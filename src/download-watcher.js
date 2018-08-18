@@ -1,29 +1,29 @@
 const fs = require('fs');
 const debug = require('debug')('download-watcher');
 
-const regexes = [];
+const matchers = [];
 const register = (regex, prefix) => {
   debug('Registering matcher', regex, `with target prefix '${prefix}'`);
-  regexes.push({ regex, prefix });
+  matchers.push({ regex, prefix });
 };
 
 debug('Watching', process.env.DOWNLOAD_DIR, 'for downloads...');
-fs.watch(process.env.DOWNLOAD_DIR, { persistent: false }, (event, file) => {
-  let regexIndex = -1;
-  let prefix = '';
+fs.watch(process.env.DOWNLOAD_DIR, { persistent: false }, (event, filename) => {
+  let matcherIndex;
+  let prefix;
   if (
-    file && 
-    regexes.some((matcher, index) => { 
-      regexIndex = index; 
+    filename && 
+    matchers.some((matcher, index) => { 
+      matcherIndex = index; 
       prefix = matcher.prefix;
-      return matcher.regex.test(file); 
+      return matcher.regex.test(filename); 
     })
   ) {
     // Remove matcher so that it matches only once:
-    regexes.splice(regexIndex, 1);
+    matchers.splice(matcherIndex, 1);
 
-    const src = process.env.DOWNLOAD_DIR + file;
-    const dest = process.env.TARGET_DIR + prefix + file;
+    const src = process.env.DOWNLOAD_DIR + filename;
+    const dest = process.env.TARGET_DIR + prefix + filename;
     debug('Moving', src, '->', dest);
 
     /**
