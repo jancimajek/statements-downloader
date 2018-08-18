@@ -11,13 +11,17 @@ const chromedriver = require('chromedriver');
 debug('Selenium server:', seleniumServer.path);
 debug('Chrome driver:', chromedriver.path);
 
+const MOCHA_GREP = process.env.MOCHA_GREP || '';
+if (MOCHA_GREP) debug(`Only downloading statements matching /${MOCHA_GREP}/`);
+
 module.exports = {
   src_folders: 'src/statements',
   output_folder: 'reports',
   test_runner: {
     type: 'mocha',
     'options': {
-      reporter: 'list'
+      reporter: 'list',
+      grep: MOCHA_GREP
     }
   },
   custom_assertions_path: '',
