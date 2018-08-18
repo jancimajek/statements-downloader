@@ -23,7 +23,7 @@ describe('Download statements for', () => {
       .getText('//section[@id="PaymentHistoryTable"]//tr[@class="is-statement-row"][1]/td[1]/span[@class="payment-history-data"]', 
         statementDate => watchDownload(
           new RegExp(downloadRegex), 
-          filename => moment(statementDate.value, 'DD/MM/YYYY').format(`[${targetDir}]YYYY-MM ${filename}`))
+          filename => moment(statementDate.value, 'DD/MM/YYYY').format(`[${targetDir}]YYYY-MM[ ${filename}]`))
       )
 
       // Download
