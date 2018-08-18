@@ -2,7 +2,7 @@
 
 ## Install
 
-First install [Hashicorp Vault](https://www.vaultproject.io/), then clone and install the app"
+First install [Hashicorp Vault](https://www.vaultproject.io/), then clone and install the app:
 
 ```bash
 $ git clone https://github.com/jancimajek/statements-downloader.git
@@ -54,6 +54,23 @@ Vault server started. Unseal by running 'npm run vault:unseal', 'vault operator 
   $ vault status | grep Sealed
   Sealed          false
   ```
+
+### Secret JSON format
+The downloader expects the secret JSON to be in the following format:
+
+```json
+{
+  "statement_provider": {
+    "username": "user",
+    "password": "P455w0Rd",
+    "downloadRegex": "^statement_regex_.*\\.pdf$",
+    "targetDir": "path/to/target/folder/relative/to/TARGET_DIR/"
+  },
+  ...
+}
+```
+
+The `downloadRegex` should match the statement file format for given `statement_provider`. The `targetDir` should be path to directory where the statements for this provider should be moved after download, relative to the `TARGET_DIR` environmental variable.
 
 ### Troubleshooting Vault:
 - Make sure `VAULT_ADDR` environment variable is set:
