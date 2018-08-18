@@ -1,5 +1,6 @@
 const moment = require('moment');
 const watchDownload = require('../download-watcher');
+const WAIT_DELAY = process.env.WAIT_DELAY || 30000;
 
 describe('Download statements for', () => {
 
@@ -9,14 +10,14 @@ describe('Download statements for', () => {
       .url('https://my.tonikenergy.com/PaymentsAndStatements')
 
       // Login
-      .waitForElementVisible('input[name=email]', 30000)
+      .waitForElementVisible('input[name=email]', WAIT_DELAY)
       .setValue('input[name=email]', username)
       .setValue('input[name=password]', password)
       .click('button[name=submit]')
 
       // Wait for statements page to load
       .useXpath()
-      .waitForElementVisible('//section[@id="PaymentHistoryTable"]//tr[@class="is-statement-row"][1]//td[@class="statementLinks"]/a[text()="Download"]', 30000)
+      .waitForElementVisible('//section[@id="PaymentHistoryTable"]//tr[@class="is-statement-row"][1]//td[@class="statementLinks"]/a[text()="Download"]', WAIT_DELAY)
 
       // Get statement date and register with download watcher
       .getText('//section[@id="PaymentHistoryTable"]//tr[@class="is-statement-row"][1]/td[1]/span[@class="payment-history-data"]', 
@@ -31,7 +32,7 @@ describe('Download statements for', () => {
 
       // Wait for the statement to be generated
       .pause(500)
-      .waitForElementVisible('//section[@id="PaymentHistoryTable"]//tr[@class="is-statement-row"][1]//td[@class="statementLinks"]/a[text()="Download"]', 30000)
+      .waitForElementVisible('//section[@id="PaymentHistoryTable"]//tr[@class="is-statement-row"][1]//td[@class="statementLinks"]/a[text()="Download"]', WAIT_DELAY)
 
       // Allow some time for the download & finish cleanly
       .pause(1000)
