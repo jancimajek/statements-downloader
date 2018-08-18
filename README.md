@@ -66,7 +66,7 @@ The downloader expects the secret JSON to be in the following format:
     "downloadRegex": "^statement_regex_.*\\.pdf$",
     "targetDir": "path/to/target/folder/relative/to/TARGET_DIR/"
   },
-  ...
+  // ...
 }
 ```
 
@@ -102,6 +102,17 @@ $ npm start
 ```
 
 You will be prompted to enter the broker token.
+
+### Download only one or some statements
+Use environmental variable `MOCHA_GREP` to limit which statements should be downloaded. The value should be a `RegExp` pattern matching `describe` or `it` label. 
+
+```bash
+$ MOCHA_GREP=Sky npm start
+// or
+$ MOCHA_GREP="(Sky|Tonik)" npm start
+```
+
+See [Mocha grep documentation](https://mochajs.org/#-g---grep-pattern) for more details.
 
 ### Troubleshooting
 
