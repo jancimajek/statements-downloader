@@ -125,7 +125,7 @@ The browser hangs loading a page.
 Sometimes you can manually reload the page in the test Chrome but usually nightwatch will have crashed by then. In that case, you'll need to re-run the script.
 
 ## Stop Vault
-Once done downlowading the statements, stop Vault:
+Once done downloading the statements, stop Vault:
 
 ```bash
 $ npm run vault:stop
