@@ -35,6 +35,7 @@
     "moment": "^2.22.2",
     "nightwatch": "^1.0.8",
     "node-vault": "^0.9.0",
-    "selenium-server": "^3.14.0"
+    "selenium-server": "^3.14.0",
+    "superagent": "^3.8.3"
   }
 }
