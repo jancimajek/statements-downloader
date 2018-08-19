@@ -8,7 +8,6 @@ debug('Vault token:', VAULT_TOKEN);
 const VAULT_ADDR = process && process.env && process.env.VAULT_ADDR ? process.env.VAULT_ADDR : 'http://127.0.0.1:8200/';
 debug('Vault address:', VAULT_ADDR);
 
-
 debug('Loading unwrap token from', process.env.UNWRAP_TOKEN_FILE);
 const UNWRAP_TOKEN = require(process.env.UNWRAP_TOKEN_FILE).wrap_info.token;
 debug('Unwrap token:', UNWRAP_TOKEN);
