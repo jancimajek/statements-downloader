@@ -75,6 +75,8 @@ The downloader expects the secret JSON to be in the following format:
 
 The `downloadRegex` should match the statement file format for given `statement_provider`. The `targetDir` should be path to directory where the statements for this provider should be moved after download, relative to the `TARGET_DIR` environmental variable.
 
+Note that structure of the `statement_provider` object can be different for different providers, as not all of them require all fields and some require additional fields. For example, providers for which the download happens in the backend via superagent may not require `downloadRegex`; and some providers may require secondary authentication / password.
+
 ### Troubleshooting Vault:
 - Make sure `VAULT_ADDR` environment variable is set:
   ```bash
