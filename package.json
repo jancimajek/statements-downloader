@@ -24,6 +24,10 @@
   },
   "author": "Jan Majek",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jancimajek/statements-downloader.git"
+  },
   "devDependencies": {
     "eslint": "^5.3.0",
     "eslint-plugin-mocha": "^5.2.0"
