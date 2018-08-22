@@ -19,8 +19,7 @@ path "auth/token/revoke-self" {
 }
 
 # Allow a token to read the secrets
-#path "secret/janci/statement-downloader" {
-path "secret/janci/test" {
+path "${VAULT_SECRET_PATH}" {
   capabilities = ["read"]
   min_wrapping_ttl = "1s"
   max_wrapping_ttl = "10s"
