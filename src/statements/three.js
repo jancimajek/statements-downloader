@@ -10,15 +10,15 @@ describe('Download statements for', () => {
   it('Three [mobile]', client => {
 
     client
-      .url('https://www.three.co.uk/My3Account2018/My3Login')
+      .url('https://sso.three.co.uk/mylogin/?service=https%3A%2F%2Fwww.three.co.uk%2FThreePortal%2Fappmanager%2FThree%2FSelfcareUk%3F_pageLabel%3DP22200581501288714397101%26_nfpb%3Dtrue%26&resource=portlet')
 
       // Login
-      .waitForElementVisible('#my3_login_form span.required input', WAIT_DELAY)
-      .setValue('#my3_login_form span.required input', username)
-      .setValue('#my3_login_form input.pwfield', password)
+      .waitForElementVisible('input.login-field-username', WAIT_DELAY)
+      .setValue('input.login-field-username', username)
+      .setValue('input.login-field-password', password)
       // Wait for the login button to become enabled
-      .waitForElementVisible('#my3-login-submit:enabled', WAIT_DELAY)
-      .click('#my3-login-submit')
+      .waitForElementVisible('button.globalButton:enabled', WAIT_DELAY)
+      .click('button.globalButton')
       // Wait for the account page to load
       .waitForElementVisible('#pl-view-name', WAIT_DELAY)
 
